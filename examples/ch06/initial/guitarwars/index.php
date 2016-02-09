@@ -13,19 +13,18 @@
 
 <?php
   require_once('appvars.php');
-  require_once('connectvars.php');
 
-  // Connect to the database 
-  $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME); 
+  // Connect to the database
+  $dbc = mysqli_connect('127.0.0.1', 'root', 'ServantEgg86', 'guitarwars');
 
   // Retrieve the score data from MySQL
   $query = "SELECT * FROM guitarwars ORDER BY score DESC, date ASC";
   $data = mysqli_query($dbc, $query);
 
-  // Loop through the array of score data, formatting it as HTML 
+  // Loop through the array of score data, formatting it as HTML
   echo '<table>';
   $i = 0;
-  while ($row = mysqli_fetch_array($data)) { 
+  while ($row = mysqli_fetch_array($data)) {
     // Display the score data
     if ($i == 0) {
       echo '<tr><td colspan="2" class="topscoreheader">Top Score: ' . $row['score'] . '</td></tr>';
@@ -47,5 +46,5 @@
   mysqli_close($dbc);
 ?>
 
-</body> 
+</body>
 </html>
